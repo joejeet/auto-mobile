@@ -1,0 +1,9 @@
+<div id="search">
+	<%= form_tag vehicles_search_path, :method => 'post' do %>
+	<p>
+		<%= text_field_tag :vehicle, params[:vehicle] %>
+		<%= hidden_field_tag :manufacturer_id, params[:manufacturer_id] %>
+		<%= submit_tag "Search Vehicles", :name => nil %>
+	</p>
+	<% end %>
+</div>

@@ -1,0 +1,17 @@
+<%= f.fields_for :manufacturer_parts do |builder| %>
+<div class="field">
+	<th>Manufacturer</th>
+	<br /><% if (builder.object.manufacturer_id.present?)%>
+		<%= builder.label builder.object.manufacturer.name %>
+		<%= builder.hidden_field :manufacturer_id %>
+	<% else %>
+	<%= builder.select(:manufacturer_id, Manufacturer.all.collect {|p| [ p.name, p.id ] }, {:include_blank => 'None'})%>
+	<%end%>
+</div>
+
+<div class="field">
+	<th>Price</th>
+	<br />
+	<%= builder.text_field :price %>
+</div>
+<%end%>

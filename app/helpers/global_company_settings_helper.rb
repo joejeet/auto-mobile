@@ -1,0 +1,2 @@
+module GlobalCompanySettingsHelper
+end

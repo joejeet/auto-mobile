@@ -1,0 +1,31 @@
+<div class="wellDark borBox">
+  <h2>Listing Companies</h2>
+</div>
+
+<p> &nbsp </p>
+
+<table class="table table-bordered">
+  <tr>
+    <th><h2>Name</h2></th>
+    <th><h2>Address Line1</h2></th>
+    <th><h2>Address Line2</h2></th>
+    <th><h2>City</h2></th>
+    <th><h2>Postcode</h2></th>
+    <th><h2>Telephone</h2></th>
+  </tr>
+ 
+<% @companies.each do |company| %>
+  <tr>
+    <td><%= company.Name %></td>
+    <td><%= company.addressline1 %></td>
+    <td><%= company.addressline2 %></td>
+    <td><%= company.City %></td>
+    <td><%= company.postcode %></td>
+    <td><%= company.Telephone %></td>
+    <td><%= link_to 'Edit', edit_company_path(company) %></td>
+    <td><%= link_to "Users", company_users_path(company) %></td>
+  </tr>
+<% end %>
+</table>
+
+

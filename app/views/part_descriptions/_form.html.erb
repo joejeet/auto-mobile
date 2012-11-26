@@ -1,0 +1,29 @@
+<%= form_for(@description) do |f| %>
+  <% if @description.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@description.errors.count, "error") %> prohibited this description from being saved:</h2>
+
+      <ul>
+      <% @description.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :spread_miles %><br />
+    <%= f.text_field :spread_miles %>
+  </p>
+  <p>
+    <%= f.label :spread_months %><br />
+    <%= f.text_field :spread_months %>
+  </p>
+  <p>
+    <%= f.submit "Create Part Description", :class => "btn btn-success" %>
+  </p>
+<% end %>

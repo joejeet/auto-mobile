@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fi_code: MyText
+  SMR_code: MyText
+  interval_miles: MyText
+  interval_months: MyText
+  spread_miles: MyText
+  spread_months: MyText
+  fixed: MyText
+
+two:
+  fi_code: MyText
+  SMR_code: MyText
+  interval_miles: MyText
+  interval_months: MyText
+  spread_miles: MyText
+  spread_months: MyText
+  fixed: MyText

@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  vin: MyString
+  vrm: MyString
+  reg_date: 2012-09-07
+  smr_code: MyString
+  country: MyString
+  make_code: MyString
+  model: MyString
+  engine_cc: 1
+  power_ps: 1
+  body_style: MyString
+  doors: 1
+  fuel_type: MyString
+  cylinders: 1
+  transmission: MyString
+  number_of_gears: 1
+  driven_wheels: MyString
+  model_year: 1
+  status: MyString
+  smr_profile: MyString
+  trim: MyString
+  honda_desc: MyString
+
+two:
+  vin: MyString
+  vrm: MyString
+  reg_date: 2012-09-07
+  smr_code: MyString
+  country: MyString
+  make_code: MyString
+  model: MyString
+  engine_cc: 1
+  power_ps: 1
+  body_style: MyString
+  doors: 1
+  fuel_type: MyString
+  cylinders: 1
+  transmission: MyString
+  number_of_gears: 1
+  driven_wheels: MyString
+  model_year: 1
+  status: MyString
+  smr_profile: MyString
+  trim: MyString
+  honda_desc: MyString

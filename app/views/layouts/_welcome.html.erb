@@ -1,0 +1,41 @@
+<div class="modal hide" id="welcomeModal">
+  <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">x</button>
+	<h3>FI Settings Manager</h3>
+  </div>
+  <div class="modal-body">
+  
+  <%= select_tag "settings_file_id", options_for_select(SettingsFile.where("company_id= ?", 
+    current_user.company_id).collect {|p| [ p.name, p.id ] })  %> 
+
+<p> &nbsp </p>
+
+<table class="table table-bordered">
+<tr>
+    <th><h2>Saved File</h2></th>
+    <th><h2>Creator</h2></th>
+    <th><h2>Saved Date</h2></th>
+    <th><h2>Load File</h2></th>
+    <th><h2>Compare</h2></th>
+   </tr>
+<% if !@session.blank? %>
+  <% @session.each do |s| %>  
+    
+    <tr>
+      <td> Session </td>
+      <td><%= User.find(s.user_id).username %></td>
+      <td><%= s.updated_at.to_date %></div>
+      <td><%=  %></div>
+      <td><%=  %></div>
+    </tr>
+
+  <% end %>
+<% end %>
+</table>
+  </div>
+  <div class="modal-footer">
+	<a href="#" class="btn btn-primary">Load session</a>
+  </div>
+</div>
+</div>
+

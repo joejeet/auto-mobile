@@ -1,0 +1,36 @@
+<tr>
+	<%if f.object.new_record? %>
+		<td><%= f.text_field :part_number %></td>
+		<td><%= f.text_field :description %></td>
+		<%= f.fields_for :profile_parts do |builder| %>
+			<td><%= builder.text_field :price %></td>
+			<td><%= builder.text_field :labour_time %></td>
+			<td><%= builder.text_field :spread_miles %></td>
+			<td><%= builder.text_field :spread_months %></td>			
+		<%end%>
+		<td><%= f.text_field :interval_miles %></td>
+		<td><%= f.text_field :interval_months %></td>
+		<td><%= f.text_field :ll_interval_miles %></td>
+		<td><%= f.text_field :ll_interval_months %></td>
+		<td> <%= f.hidden_field :_destroy %>
+		<%= link_to image_tag('icons/delete.png', :title => "Delete"), '#', :id => 'delete_item' %> </td>
+	<%else%>
+		<tr>
+			<td>
+				<%= link_to f.object.part_number, edit_part_path(f.object), :target => "_blank" %>
+			</td>
+			<td><%= f.object.description %></td>
+			<%= f.fields_for :profile_parts do |builder| %>
+				<td><%= builder.text_field :price %></td>
+				<td><%= builder.text_field :labour_time %></td>
+				<td><%= builder.text_field :spread_miles %></td>
+				<td><%= builder.text_field :spread_months %></td>			
+			<%end%>
+			<td><%= f.object.interval_miles %></td>
+			<td><%= f.object.interval_months %></td>
+			<td><%= f.object.ll_interval_miles %></td>
+			<td><%= f.object.ll_interval_months %></td>
+			<td><%= f.object.price %></td>
+		</tr>
+	<%end%>
+</tr>

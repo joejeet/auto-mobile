@@ -1,0 +1,55 @@
+<div id="service_plan_search">&nbsp;
+<div class="field fieldBlock">
+		<%= label_tag :Manufacturer %>
+		<br />
+		<%= select_tag( :manufacturer_name, options_for_select(@manufacturers_for_dropdown), {:prompt => 'Select Manufacturer'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :Country %>
+		<br /><%= select_tag( :country_name, options_for_select(@vehicles_country_for_dropdown), {:prompt => 'Select Country'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :Model %>
+		<br /><%= collection_select(nil, :make_model, @vehicles_model_for_dropdown, :model, :id, {:prompt   => "Select an Model"}, {:id => 'make_model'})%>
+	</div>
+		<div class="field fieldBlock">
+		<%= label_tag :body_style %>
+		<br /><%= collection_select(nil, :body_style, @vehicles_body_style_for_dropdown, :id, :body_style, {:prompt => 'Select Body Style'}, {:id => 'body_style'}) %>		
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :fuel_type %>
+		<br /><%= collection_select(nil, :fuel_type, (@vehicles_fuel_type_for_dropdown), :id, :fuel_type, {:prompt => 'Select Fuel Type'}, {:id => 'fuel_type'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :doors %>
+		<br /><%= collection_select(nil, :doors, (@vehicles_doors_for_dropdown), :id, :doors, {:prompt => 'Select Doors'}, {:id => 'doors'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :engine_cc %>
+		<br /><%= collection_select(nil, :engine_cc, (@vehicles_engine_cc_for_dropdown), :id, :engine_cc, {:prompt => 'Select Engine CC'}, {:id => 'engine_cc'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :cylinders %>
+		<br /><%= collection_select(nil, :cylinders, (@vehicles_cylinders_for_dropdown), :id, :cylinders, {:prompt => 'Select Cylinders'}, {:id => 'cylinders'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :power_bhp %>
+		<br /><%= collection_select(nil, :power_bhp, (@vehicles_power_bhp_for_dropdown), :id, :power_bhp, {:prompt => 'Select Power Bhp'}, {:id => 'power_bhp'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :transmission %>
+		<br /><%= collection_select(nil, :transmission, (@vehicles_transmission_for_dropdown), :id, :transmission, {:prompt => 'Select Transmission'}, {:id => 'transmission'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :number_of_gears %>
+		<br /><%= collection_select(nil, :number_of_gears, (@vehicles_number_of_gears_for_dropdown), :id, :number_of_gears, {:prompt => 'Select Number Of Gears'}, {:id => 'number_of_gears'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :driven_wheels %>
+		<br /><%= collection_select(nil, :driven_wheels, (@vehicles_driven_wheels_for_dropdown), :id, :driven_wheels, {:prompt => 'Select Driven Wheels'}, {:id => 'driven_wheels'}) %>
+	</div>
+	<div class="field fieldBlock">
+		<%= label_tag :model_year %>
+		<br /><%= collection_select(nil, :model_year, (@vehicles_model_year_for_dropdown), :id, :model_year, {:prompt => 'Select Model Year'}, {:id => 'model_year'}) %>
+	</div>
+</div>

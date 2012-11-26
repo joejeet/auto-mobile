@@ -1,0 +1,45 @@
+<div>
+	<h2>Search Part Descriptions</h2>
+</div>
+
+<div id="search">
+	<%= form_tag search_part_descriptions_path, :method => 'get' do %>
+		<p>
+			<%= text_field_tag :description, params[:description] %>
+			<%= submit_tag "Search", :class => "btn btn-primary", :name => nil %>
+		</p>
+	<% end %>
+</div>
+
+<%if @descriptions %>
+	<div>
+		<h2>Listing Descriptions</h2>
+	</div>
+	<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+		<tr>
+			<th><%= PartDescription.human_attribute_name("name") %></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<% @descriptions.each do |descr|%>
+			<tr>
+			    <td><%= descr.description %></td>
+			    <td><%= link_to 'Edit', edit_part_description_path(descr) %></td>
+			    <td><%= link_to 'Delete', descr, confirm: 'Are you sure?', method: :delete %></td>
+			</tr>
+		<% end %>
+	</table>
+<%end%>
+<div>
+  <hr>
+	<h2>Create Description</h2>
+</div>
+<div>
+	<table>
+  <div class="btn btn-inverse">
+		<%= link_to 'New Description',  new_part_description_path %>
+  </div>  
+	</table>
+</div>
+<br />
+

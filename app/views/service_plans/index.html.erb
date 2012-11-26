@@ -1,0 +1,36 @@
+<div id="search">
+<h1> Service Plans </h1>
+<hr>
+<%= form_tag service_plans_search_path,  :method => 'post' do %>
+	  <%= render '/service_plans/variant_selection' %>
+     <div class="field fieldBlock">
+       <p> &nbsp </p> 
+       <p> &nbsp </p>  
+        
+	     <%= submit_tag "Search Service Plan", :class => "btn btn-primary", :name => nil %>
+     </div>
+<% end %>
+</div>
+
+<div class="btn btn-inverse">
+  <%= link_to 'New Service Plan', '/service_plans/filter_vehicles' %>
+</div>
+<%if @service_plan%>
+<div id="service_plans">
+	<div>
+		<h2>Listing Service Plans</h2>
+	</div>
+	<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+		<tr>
+			<th>SMR Code</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<%= render @service_plan%>
+		</tr>
+	</table>
+</div>
+<%end%>
+

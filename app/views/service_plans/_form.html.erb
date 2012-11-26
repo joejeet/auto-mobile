@@ -1,0 +1,141 @@
+<%= form_for(@service_plan) do |f| %>
+	<% if @service_plan.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@service_plan.errors.count, "error") %> prohibited this part from being saved:</h2>
+		
+			<ul>
+				<% @service_plan.errors.full_messages.each do |msg| %>
+				<li>
+					<%= msg %>
+				</li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label "smr_code" %>
+		<br />
+		<%= @service_plan.smr_code %>
+	</div>
+	<div class="field">
+		<%= f.label :interval_miles %>
+		<br />
+		<%= f.text_field :interval_miles %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :interval_months %>
+		<br />
+		<%= f.text_field :interval_months %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :fixed %>
+		<br />
+		<%= f.select :fixed, options_for_select([["Fixed", "Fixed"], ["Variable", "Variable"]], @service_plan.fixed) %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :embargo_datetime %>
+		<br />
+		<%= f.date_select :embargo_datetime %>
+	</div>
+	
+	<ul class="tabs">
+		<li>
+			<a href="#">Services</a>
+		</li>
+		<li>
+			<a href="#">Service Parts</a>
+		</li><li></li>
+		<li>
+			<a href="#">Wear Parts</a>
+		</li>
+		<li>
+			<a href="#">Menu Pricing</a>
+		</li>
+	</ul>
+
+	<!-- tab "panes" -->
+	<div class="panes">
+		<div>
+			<table id="services">
+				<thead>
+					<% if !f.object.new_record? %>
+						<th><%= t :name %></th>
+					<% end %>
+					<% if !f.object.new_record? %>
+						<th><%= t :multiply %></th>
+					<% end %>
+					<th><%= t :manufacturer %></th>
+					<th><%= t :labour %></th>
+					<th></th>
+				</thead>
+				<tbody>
+					<%= f.fields_for :services do |builder| %>
+						<%= render "service", :is_new => f.object.new_record?, :f => builder %>
+					<%end%>
+				</tbody>
+				<tfoot>
+					<td colspan="5"> <%= link_to image_tag('icons/add.png', :title => "Add a new service"), '#', :id => 'add_service' %> </td>
+				</tfoot>
+			</table>
+			<%= new_child_fields_template(f, :services, {}, {:is_new => f.object.new_record?}) %>
+			<%= yield :services_fields_template %>
+		</div>
+		<div>
+			<table id="service_parts" width="100%">
+				<thead>
+					<th><%= t :description %></th>
+					<th colspan="2"><%= t :interval_miles %></th>
+					<th colspan="2"><%= t :interval_months %></th>
+					<th colspan="2" ><%= t :ll_interval_miles %></th>
+					<th colspan="2"><%= t :ll_interval_months %></th>
+					<th><%= t :labour_time %></th>
+					<th><%= t :price %></th>
+					<th colspan="2"><%= t :part_number %></th>
+					<th></th>
+				</thead>
+				<tbody>
+					<%= render "part_description", :f => f, :part_type => 'S' %>
+				</tbody>
+				<tfoot>
+	
+				</tfoot>
+			</table>
+		</div>
+		<div>
+			Wear Parts Go here
+		</div>
+		<div>
+				<table id="fixed_costs">
+				<thead>
+					<th><%= t :menu_pricing %></th>
+				</thead>
+				<tbody>
+					<%= f.fields_for :fixed_costs do |builder| %>
+						<%= render "fixed_cost", :is_new => f.object.new_record?, :f => builder %>
+					<%end%>
+				</tbody>
+				<tfoot>
+					<td colspan="5"> <%= link_to image_tag('icons/add.png', :title => "Add a new fixed cost"), '#', :id => 'add_fixed_cost' %> </td>
+				</tfoot>
+			</table>
+			<%= new_child_fields_template(f, :fixed_costs, {}, {:is_new => f.object.new_record?}) %>
+			<%= yield :fixed_costs_fields_template %>
+			
+			</div>
+		
+	</div>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
+
+<div class="jqmWindow" id="dialog">
+	<a href="#" class="jqmClose">Close</a>
+	<hr>
+	<div id="dialog_bdy"></div>
+</div>

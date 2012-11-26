@@ -1,0 +1,13 @@
+<div class="make_model">
+
+		<tr>
+			<td><%=  make_model.manufacturer.name %></td>
+			<td><%=  make_model.country.country_code %></td>
+			<td><%=  make_model.make_code %></td>
+			<td><%=  make_model.model %></td>
+			<td><%=  make_model.model_code %></td>
+			<td><%= link_to 'Edit', edit_make_model_path(make_model) %></td>
+			<td><%= link_to 'Delete', make_model_path(make_model), confirm: 'Are you sure?', method: :delete %></td>
+		</tr>
+	
+	<div>

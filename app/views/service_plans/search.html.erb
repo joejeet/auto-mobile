@@ -1,0 +1,22 @@
+<%if @service_plan%>
+<div id="service_plans">
+	<div class="wellDark borBox">
+		<h2>Listing Service Plans</h2>
+	</div>
+<p> &nbsp <p>
+	<table class="table table-bordered">
+		<tr>
+			<th>SMR Code</th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<%= render @service_plan%>
+		</tr>
+	</table>
+</div>
+<%end%>
+<div class="btn btn-inverse">
+  <%= link_to 'Back', service_plans_path %>
+</div>

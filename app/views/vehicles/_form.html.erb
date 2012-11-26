@@ -1,0 +1,107 @@
+	<%= form_for([@manufacturer, @vehicle]) do |f| %>
+<% if @vehicle.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@vehicle.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
+
+	<ul>
+		<% @vehicle.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<div class="field">
+	<%= f.label :manufacturer %>
+	<br />
+	<%=  @manufacturer.name%>
+</div>
+<div class="field">
+	<%= f.label :country_id%>
+	<br />
+	<%= f.select(:country_id,  options_for_select(@country_code_for_dropdown), {:include_blank => ''})%>
+</div>
+<div class="field">
+	<%= f.label :model %>
+	<br />
+	<%= f.select(:make_model_id, options_for_select(@models_for_dropdown), {:include_blank => ''})%>
+</div>
+<div class="field">
+	<%= f.label :version %>
+	<br />
+	<%= f.text_field :version %>
+</div>
+<div class="field">
+	<%= f.label :body_style %>
+	<br />
+	<%= f.select :body_style, options_for_select(Vehicle::BODY_STYLE.invert.sort, @vehicle.body_style), :include_blank => true %>
+</div>
+<div class="field">
+	<%= f.label :fuel_type %>
+	<br />
+	<%= f.select :fuel_type, options_for_select(Vehicle::FUEL_TYPES.invert.sort, @vehicle.fuel_type), :include_blank => true %>
+</div>
+<div class="field">
+	<%= f.label :doors %>
+	<br />
+	<%= f.select :doors, options_for_select(Vehicle::DOORS.invert.sort, @vehicle.doors), :include_blank => true %>
+</div>
+<div class="field">
+	<%= f.label :engine_cc %>
+	<br />
+	<%= f.text_field :engine_cc %>
+</div>
+<div class="field">
+	<%= f.label :cylinders %>
+	<br />
+	<%= f.select :cylinders, options_for_select(Vehicle::CYLINDERS, @vehicle.cylinders), :include_blank => true %>
+</div>
+<div class="field">
+	<%= f.label :power_bhp %>
+	<br />
+	<%= f.text_field :power_bhp %>
+</div>
+
+<div class="field">
+	<%= f.label :power_ps %>
+	<br />
+	<%= f.text_field :power_ps %>
+</div>
+
+<div class="field">
+	<%= f.label :transmission %>
+	<br />
+	<%= f.select :transmission, options_for_select(Vehicle::TRANSMISSION, @vehicle.transmission), :include_blank => true %>
+</div>
+<div class="field">
+	<%= f.label :number_of_gears %>
+	<br />
+	<%= f.select :number_of_gears, options_for_select(Vehicle::GEARS, @vehicle.number_of_gears), :include_blank => true %>
+	
+</div>
+<div class="field">
+	<%= f.label :driven_wheels %>
+	<br />
+	<%= f.select :driven_wheels, options_for_select(Vehicle::DRIVEN_WHEELS, @vehicle.driven_wheels), :include_blank => true %>
+</div>
+<div class="field">
+	<%= f.label :model_year %>
+	<br />
+	<%= f.date_select(:model_year, :start_year => 2000, :end_year => 2099, :field_name => 'model_year' , :prefix => 'vehicle') %>
+</div>
+<div class="field">
+	<%= f.label :status %>
+	<br />
+	<%= f.select :status, options_for_select(Vehicle::STATUS, @vehicle.status), :include_blank => true %>
+
+</div>
+<div class="field">
+	<%= f.label :embargo_datetime %>
+	<br />
+	<%= f.date_select :embargo_datetime %>
+</div>
+<div class="actions">
+	<%= f.submit %>
+</div>
+<% end %>

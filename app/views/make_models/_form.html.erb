@@ -1,0 +1,42 @@
+<%= form_for(@make_model) do |f| %>
+<% if @make_model.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@make_model.errors.count, "error") %> prohibited this make_model from being saved:</h2>
+
+	<ul>
+		<% @make_model.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<h1> New Model </h1>
+<hr>
+<div class="field">
+	<%= f.label :manufacturer %>
+	<br />
+	<%= f.select(:manufacturer_id, Manufacturer.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''})%>
+</div>
+<div class="field">
+	<%= f.label :country_id %>
+	<br />
+	<%= f.select(:country_id, Country.all.collect {|p| [ p.name, p.id ] }, {:include_blank => ''})%>
+</div>
+<div class="field">
+	<%= f.label :model %>
+	<br />
+	<%= f.text_field :model %>
+</div>
+<div class="field">
+	<%= f.label :model_code %>
+	<br />
+	<%= f.text_field :model_code %>
+</div>
+
+<div class="actions">
+	<%= f.submit "Create Model", :class => "btn btn-success" %>
+</div>
+<% end %>

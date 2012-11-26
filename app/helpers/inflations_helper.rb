@@ -1,0 +1,2 @@
+module InflationsHelper
+end

@@ -1,0 +1,49 @@
+<%= f.fields_for :profile_parts do |builder| %>
+	<tr>
+		<td>	
+			<%= builder.object.part_description.description %>
+		</td>		
+		<td></td>
+		<td>
+			<%= builder.text_field :interval_miles, :size => 10 %>
+		</td>
+		<td></td>
+		<td>
+			<%= builder.text_field :interval_months, :size => 10 %>
+		</td>
+		<td></td>
+		<td>
+			<%= builder.text_field :ll_interval_miles, :size => 10 %>
+		</td>
+		<td></td>
+		<td>
+			<%= builder.text_field :ll_interval_months, :size => 10 %>
+		</td>
+		<td>
+			<%= builder.text_field :labour_time, :size => 10 %>
+		</td>
+		<td></td>
+		<td><%= builder.hidden_field :part_id %></td>
+		<%if (builder.object.part_id.present?) %>
+			<td style="text-align:right;">			
+				<%= text_field_tag "part_number_field_#{builder.object.part_description.id}", builder.object.part.part_numbers.collect(&:part_number).first, :class => [:part_number_field, :search, :hidden] %>
+				<%= hidden_field_tag "description_id_#{builder.object.part_description.id}", builder.object.part_description.id, :class => :part_description_id %>
+				<%= hidden_field_tag "part_type_#{builder.object.part_description.id}", part_type, :class => :part_type %>
+				<%= hidden_field_tag "part_manufacturer_#{builder.object.part_description.id}", @manufacturer, :class => :manufacturer_id %>
+				<%= submit_tag "Search Part", :class => [:submit_part, :search, :hidden] %>
+				<a href="#" class="submit_part"><%=builder.object.part.part_numbers.collect(&:part_number).first%></a>
+			</td>
+			<td width="150"><a href="#" class="submit_part_delete hidden">Delete</a></td>
+		<%else%>
+			<td style="text-align:right;">			
+				<%= text_field_tag "part_number_field_#{builder.object.part_description.id}", params[:search_service_part], :class => [:part_number_field, :search] %>
+				<%= hidden_field_tag "description_id_#{builder.object.part_description.id}", builder.object.part_description.id, :class => :part_description_id %>
+				<%= hidden_field_tag "part_type_#{builder.object.part_description.id}", part_type, :class => :part_type %>
+				<%= hidden_field_tag "part_manufacturer_#{builder.object.part_description.id}", @manufacturer, :class => :manufacturer_id %>
+				<%= submit_tag "Search Part", :class => [:submit_part, :search] %>
+				<a href="#" class="submit_part hidden"></a>
+			</td>
+			<td width="150"><a href="#" class="submit_part_delete hidden">Delete</a></td>
+		<%end %>
+	</tr>
+<%end%>

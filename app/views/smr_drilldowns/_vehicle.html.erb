@@ -1,0 +1,222 @@
+<table class="table table-bordered table-condensed"  id="vertical-2">   
+    <tr class="smrdrilldown">
+        <th><h1>Service Drilldown</h1></th>
+        <%@vehicles.each do |vehicle|%>
+        <td><strong>
+           <%= vehicle.make_model.make_code %>
+           <%= vehicle.make_model.model %></br>
+           <%= vehicle.version %></br>
+           <%= vehicle.engine_cc %>cc
+           <%= vehicle.power_bhp %>bhp</br>
+           <%= vehicle.fuel_type %>           
+        </td></strong>
+        <%end%>
+    </tr>
+    <tr>
+        <th>Term Months</th>
+        <%@vehicles.each do |vehicle|%>
+        <td><%= contract_months(vehicle) %></td>
+        <%end%>
+    </tr>
+    <tr>
+        <th>Term Distance</th>
+        <%@vehicles.each do |vehicle|%>
+        <td><%=contract_miles(vehicle)  %></td>
+        <%end%>
+    </tr>
+    <tr>
+        <th><tt>Tick To Make Benchmark</tt></th>
+        <%@vehicles.each do |vehicle|%>
+        <td><%= check_box_tag "vehicle[benchmark]", vehicle.id, (checked = false) %></td>
+        <%end%>
+    </tr>
+    <tr>
+        <th>Interval Distance</th>
+        <%@vehicles.each do |vehicle|%>
+        <td><%= vehicle.service_plans.fixed.interval_miles %></td>
+        <%end%>
+    </tr>
+    <tr>
+        <th>Interval Months</th>
+        <%@vehicles.each do |vehicle|%>
+        <td><%= vehicle.service_plans.fixed.interval_months %></td>
+        <%end%>
+    </tr>
+    <tr>
+        <th>Service Pack Cost</th>
+        <%@vehicles.each do |vehicle|%>
+        <td></td>
+        <%end%>
+    </tr>
+    <tr><th><h3><hr /></h3></th></tr>
+    <% arr = []%>
+    <%@vehicles.each do |vehicle|%>    
+    <% arr<<  vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['contract_service_array'][0].count  %>
+     <%end%>
+     <%for i in 0..arr.max-1%>
+      <tr>
+        <th>Service<%= i+1 %></th>        
+          <%@vehicles.each do |vehicle|%>    
+         <td><%=  check_service(vehicle, i) %></td>
+          <%end%>        
+    </tr>
+    <tr>
+        <th>Sump Capacity</th>        
+          <%@vehicles.each do |vehicle|%>    
+         <td><%= vehicle.sump_capacity if vehicle.sump_capacity and  !check_service(vehicle, i).nil? %></td>
+          <%end%>        
+    </tr>  
+    <tr>
+        <th>Oil Cost</th>        
+          <%@vehicles.each do |vehicle|%>    
+         <td><%= 5.5  if !check_service(vehicle, i).nil? %></td>
+          <%end%>        
+    </tr> 
+    <tr>
+        <th>Oil Total</th>        
+          <%@vehicles.each do |vehicle|%>    
+         <td><%= (vehicle.sump_capacity).to_i* 5.5 if vehicle.sump_capacity and !check_service(vehicle, i).nil? %></td>
+          <%end%>        
+    </tr>
+      
+    <% @vehicles.first.service_plans.fixed.calculate_profile_total_cost(contract_miles(@vehicles.first), contract_months(@vehicles.first))['service_description'][0].each do |description|  %>
+     <tr>
+        <th><%= description %></th>      
+        <%@vehicles.each do |vehicle|%>
+        <% if !check_service(vehicle, i).nil? %>
+         <% vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['service_parts'][0][i][0].each_with_index do |part,num|  %>
+         <% if part.part_description.description == description %>      
+         <td><%= vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['service_parts_smr_rate'][0][i][0][num] %></td>   
+       <%end%> 
+        <%end%>   
+        <%end%>         
+        <%end%>        
+                         
+     </tr>          
+    <%end%>  
+    <tr>
+        <th>Labour Hours</th>        
+           <%@vehicles.each do |vehicle|%>    
+         <td><%=  check_service_labour(vehicle, i) if !check_service(vehicle, i).nil?%></td>
+          <%end%>            
+    </tr>
+     <tr>
+        <th>Labour Rate</th>        
+           <%@vehicles.each do |vehicle|%>    
+         <td><%=  60.0 %></td>
+          <%end%>            
+    </tr>
+     <tr>
+        <th>Labour Total</th>        
+           <%@vehicles.each do |vehicle|%>    
+         <td><%= check_service_labour_cost(vehicle, i) if !(check_service(vehicle, i)).nil?%></td>
+          <%end%>            
+    </tr>
+      <tr>
+        <th>Part Inflation</th>        
+          <%@vehicles.each do |vehicle|%>    
+         <td><%=  vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['part_inflation'][0][i] %></td>
+          <%end%>        
+    </tr>
+    <tr>
+        <th>Service Total</th>        
+           <%@vehicles.each do |vehicle|%>    
+         <td><%= check_service_total_cost(vehicle, i) if !(check_service(vehicle, i)).nil? %></td>
+          <%end%>            
+    </tr>
+    <tr><th><h3><hr /></h3></th></tr>
+     <%end%>
+    
+    
+     <tr>
+        <th rowapan="2">Term Summary</th>        
+           <%@vehicles.each do |vehicle|%>    
+         <td><%=  contract_months(vehicle) %></br>
+         <%= contract_miles(vehicle) %></td>
+          <%end%>            
+    </tr>
+     <tr>
+        <th>Service Count</th>        
+           <%@vehicles.each do |vehicle|%>    
+        <td><%=  vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['contract_service_array'][0].count %></td>
+          <%end%>            
+    </tr>
+     <tr>
+        <th>Oil Quantity</th>        
+           <%@vehicles.each do |vehicle|%>    
+         <td><%=  (vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['contract_service_array'][0].count)* (vehicle.sump_capacity.to_i )%></td>
+          <%end%>            
+    </tr>
+    <tr>
+        <th>Oil Total</th>        
+           <%@vehicles.each do |vehicle|%>    
+          <td><%= (vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['contract_service_array'][0].count)* (vehicle.sump_capacity.to_i )*5.5%></td>
+          <%end%>            
+    </tr>
+    <tr>
+        <th>Part Total</th>        
+           <%@vehicles.each do |vehicle|%>    
+          <td><%=  vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['service_parts_smr_rate'].flatten.inject(0, :+) %></td>
+          <%end%>            
+    </tr>
+    <tr>
+        <th>Labour Hours Total</th>        
+           <%@vehicles.each do |vehicle|%>    
+          <td><%=  vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['services'][0].collect(&:labour).inject(0, :+) %></td>
+          <%end%>            
+    </tr>
+    <tr>
+        <th>Labour Total</th>        
+           <%@vehicles.each do |vehicle|%>    
+          <td><%=  vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['service_labour_cost'].flatten.inject(0, :+) %></td>
+          <%end%>            
+    </tr>
+    <tr>
+        <th>Service Total</th>        
+           <%@vehicles.each do |vehicle|%>    
+          <td><%#=#  @services_total_arr.flatten.inject(0, :+) %></td>
+          <%end%>            
+    </tr>
+       
+     <tr><th><h3><hr /></h3></th></tr>
+     <tr><th><h3>Wear Parts</h3></th></tr>
+     
+     <% @vehicles.first.service_plans.fixed.calculate_profile_total_cost(contract_miles(@vehicles.first), contract_months(@vehicles.first))['wear_description'][0].each do |description|  %>
+     <tr>
+        <th><%= description %></th>   
+        <%@vehicles.each do |vehicle|%>
+        <% wear_parts_vehicle(vehicle).each_with_index do |part, i|  %>
+       <% if part == description%>      
+        <td><%= vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['wear_parts_rate'][0][i]  %></td>   
+        <%end%> 
+        <%end%>   
+        <%end%>    
+    </tr>    
+        <tr>
+        <th><i>part labour rate</i></th>            
+        <%@vehicles.each do |vehicle|%>
+        <% wear_parts_vehicle(vehicle).each_with_index do |part, i|  %>
+        <% if part == description%>         
+        <td><%= vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['wear_labour'][0][i]  %></td>
+        <%end%> 
+        <%end%>   
+        <%end%>    
+    </tr>                
+     <tr>
+     <th><i>part total rate</i></th>
+        <%@vehicles.each do |vehicle|%>
+        <% wear_parts_vehicle(vehicle).each_with_index do |part, i|  %>
+        <% if part == description%>         
+         <td><%= vehicle.service_plans.fixed.calculate_profile_total_cost(contract_miles(vehicle), contract_months(vehicle))['wear_parts_total_rate'][0][i]  %></td>   
+        <%end%> 
+        <%end%>   
+        <%end%>    
+    </tr>        
+     <%end%>        
+
+    
+  </table>
+     
+   
+
+   

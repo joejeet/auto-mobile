@@ -1,0 +1,36 @@
+// Place all the styles related to the job_costs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table#job_cost {
+    border-collapse: collapse;   
+}
+
+#job_cost tr {
+    style: none;
+}
+
+.jobModal {
+    width: 1200px;
+    height: 575px;
+    margin-left: -600px;
+}
+
+.dealer { width: 600px; }
+
+.hidden{
+    display:none;
+}
+
+.expand {
+    style: none;
+}
+
+.main {
+    style: none;
+}
+
+.search-box { 
+    padding-top: 60px;
+    margin-left: 140px;
+}

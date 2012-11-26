@@ -1,0 +1,39 @@
+
+ <div class="well modal form-inline">
+  <h2>Create User Account</h2>
+
+  <p> &nbsp </p>
+
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <h4><%= devise_error_messages! %></h4>
+
+    <div class="fieldBlock">
+    <%= f.label :Company %><br />
+       <%= f.select :company_id, options_from_collection_for_select(Company.all, 'id', 'Name'), :prompt => 'select a company' %>
+    </div>   
+
+        
+    <div class="fieldBlock"><%= f.label :username %><br />
+    <%= f.text_field :username %></div>
+
+    <div class="fieldBlock"><%= f.label :email %><br />
+    <%= f.email_field :email %></div>
+
+    <div class="fieldBlock"><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+    <div class="fieldBlock"><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></div>
+
+   
+    <div class="fieldBlock"><%= f.submit "Create", { :class => "btn btn-success" } %></div>
+  <% end %>
+  
+  <p> &nbsp </p>
+
+  <div class="btn btn-inverse">
+    <%= render "devise/shared/links" %>
+  </div>
+
+  </div>
+

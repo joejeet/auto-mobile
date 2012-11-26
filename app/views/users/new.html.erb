@@ -1,0 +1,60 @@
+<div class="well modal form-inline"> 
+  <h2>Create New user</h2>
+
+  <p> &nbsp </p>
+
+  <%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this company from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+ 
+    <div class="fieldBlock">
+    <%= f.label :Company %><br />
+       <%= f.select(:company_id, Company.all.collect { |c| [c.Name, c.id] }, {:prompt => 'select a company'}) %>
+    </div>   
+
+    <div class="fieldBlock">
+    <%= f.label :User_Type %><br />
+       <%= f.select(:user_type_id, UserType.all.collect {|t| [ t.user_type_name, t.id] }, {:prompt => 'select a user type'} ) %>
+    </div> 
+
+
+        
+    <div class="fieldBlock"><%= f.label :username %><br />
+    <%= f.text_field :username %></div>
+
+    <div class="fieldBlock"><%= f.label :email %><br />
+    <%= f.email_field :email %></div>
+
+    <div class="fieldBlock"><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+    <div class="fieldBlock"><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></div>
+    
+    <div class="fieldBlock-user"><%= f.label :admin %><br />
+    <%= f.check_box :is_admin,  {}, 'true', 'false' %></div>
+
+    <div class="fieldBlock-user"><%= f.label :active %><br />
+    <%= f.check_box :active_status,  {}, 'true', 'false' %></div>
+
+    
+  <div class="actions fieldBlock">
+      <%= f.submit "Create User", :class => "btn btn-success" %>
+  </div>
+ <% end %>
+ 
+  <div class="btn btn-inverse">
+    <%= link_to 'Back', users_path %>
+  </div>
+</div>
+
+
+

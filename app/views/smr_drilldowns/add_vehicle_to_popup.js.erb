@@ -1,0 +1,4 @@
+ $('#smrModal').modal('show');
+ 
+ $('#smr_modal_body').html('<%= escape_javascript(render :partial => 'vehicle', :locals => {:vehicles => @vehicles}) %>');
+ 

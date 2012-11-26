@@ -1,0 +1,6 @@
+dialog_show("<%= escape_javascript(render(:partial => "select_part")) %>");
+<%if @part.present?%>
+	var part = <%=raw(@part_json) %>;
+	var select_part_number = <%=@part.select_part_number(@part)%>
+	var price = <%=@part.calculate_price(@part)%>
+<%end%>

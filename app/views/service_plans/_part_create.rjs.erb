@@ -1,0 +1,13 @@
+page.replace_html 'create_part', :partial => 'add_part_detail'
+
+page<< "$j ('#create_ part_dialog').dialog({
+
+        title: 'New Part'',
+
+        modal: true,
+
+        width: 500,
+
+        close: function(event, ui) { $j ('#create_ part_dialog').dialog('destroy') }
+
+    });"

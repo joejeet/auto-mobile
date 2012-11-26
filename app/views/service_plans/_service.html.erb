@@ -1,0 +1,23 @@
+<tr>
+	<% if !is_new %>
+		<td>
+			<%= f.text_field :name %>
+	  	</td>
+  	<% end %>
+  	<% if !is_new %>
+	  	<td>
+	  		<%= f.text_field :multiply %>
+	  	</td>
+  	<% end %>
+  	<td>
+  		<%= @vehicle.manufacturer.name %>
+  	</td>
+  	<td>
+  		<%= f.text_field :labour %>
+  	</td>
+	
+  	<td>
+  		<%= f.hidden_field :_destroy %>
+  		<%=link_to image_tag('icons/delete.png', :title => "Delete"), '#', :id => 'delete_item', :class => :delete_table_row %>
+  	</td>
+</tr>

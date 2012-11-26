@@ -1,0 +1,38 @@
+<div id="search">
+	<%= form_tag manufacturer_vehicles_search_path(@manufacturer.id), :method => 'post' do %>
+	<p>
+		<%= hidden_field_tag :manufacturer_id, params[:manufacturer_id] if params[:manufacturer_id]%>
+		<%= text_field_tag :vehicle, params[:vehicle] %>
+		<%= submit_tag "Search Variants", :name => nil %>
+	</p>
+	<% end %>
+</div>
+
+<%if @vehicle%>
+<div><h2>Listing <%= @manufacturer.name %> Vehicles</h2></div>
+
+<div id="vehicles">
+		<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+		<tr>
+			<th><%= Vehicle.human_attribute_name("fi_code") %></th>
+			<th><%= Vehicle.human_attribute_name("model") %></th>
+			<th><%= Vehicle.human_attribute_name("body_style") %></th>
+			<th><%= Vehicle.human_attribute_name("fuel_type") %></th>
+			<th><%= Vehicle.human_attribute_name("engine_cc") %></th>
+			<th><%= Vehicle.human_attribute_name("power_bhp") %></th>
+			<th><%= Vehicle.human_attribute_name("transmission") %></th>
+			<th><%= Vehicle.human_attribute_name("driven_wheels") %></th>
+			<th><%= Vehicle.human_attribute_name("status") %> </th>
+			<th><%= Vehicle.human_attribute_name("embargo_datetime") %></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+	<%= render @vehicle %></tr>
+	</table>
+</div><%end%>
+
+<div><h2>Create Vehicles</h2></div>
+<div>
+	<%= link_to 'New Vehicle', new_manufacturer_vehicle_path %>
+</div>

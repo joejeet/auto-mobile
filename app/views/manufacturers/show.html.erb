@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+<%= render 'search'%>
+<div><h2>Listing Manufacturer</h2></div>
+<p>
+  <b>Name:</b>
+  <%= link_to @manufacturer.name, manufacturer_vehicles_path(@manufacturer)  %>
+</p>
+
+
+<%= link_to 'Edit', edit_manufacturer_path(@manufacturer) %> |
+<%= link_to 'Back', manufacturers_path %>

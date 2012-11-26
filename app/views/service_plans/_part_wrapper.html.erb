@@ -1,0 +1,3 @@
+<%= fields_for "service_plan[profile_parts_attributes][]", @profile_part do |builder| %>
+	<%= render "part", :f => builder %>
+<%end%>

@@ -1,0 +1,13 @@
+<div class="pull-left">
+<%= form_tag '/search_vehicle' do %>
+<p>
+<label for="">Months</label>
+ <%= text_field_tag  "search[months]", @months %>
+ <label for="">Miles</label>
+ <%= text_field_tag  "search[miles]", @miles %>
+  <label for=""></label></br>
+ <%= text_field_tag  "search[vehicle]", @vehicle %>    
+ <%= submit_tag "Search", :class => "btn btn-primary", :name => nil %>
+</p> 
+<% end %>
+</div>

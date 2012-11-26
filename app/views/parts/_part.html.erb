@@ -1,0 +1,16 @@
+<div class="part">
+<%  part.part_numbers.each do |part_no| %>
+		<tr>
+			<td><%=  part.part_type %></td>
+			<td><%= part_no.part_number %></td>
+			<td><%=  part.part_description.description %></td>
+			<%  part.manufacturer_parts.each do |manufacturer| %>
+				<td><%= manufacturer.manufacturer.name %></td>
+				<td><%= manufacturer.price %></td>
+			<%end%>
+			<td><%= part.embargo_datetime.strftime("%b %d, %Y") %></td>
+			<td><%= link_to 'Edit', edit_part_path(part) %></td>
+			<td><%= link_to 'Delete', part_path(part), confirm: 'Are you sure?', method: :delete %></td>
+		</tr>
+	<%end%>
+	<div>

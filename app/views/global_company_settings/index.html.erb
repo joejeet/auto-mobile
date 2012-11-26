@@ -1,0 +1,181 @@
+ <div class="wellDark borBox">
+   <h2>Global / Company SMR Settings</h2>
+  </div>
+ 
+    <p> &nbsp </p>
+
+<table class="table table-bordered"> 
+<%= form_for(@setting) do |f| %> 
+  <div class="form">
+
+      <tr>
+         <td> 
+         <div class="fieldBlock-set ">
+        <%= label_tag :name, "File Name" %> <%= text_field_tag "setting[name]" %></div> 
+        </td> 
+      
+        <td> 
+          <div class="fieldBlock-set ">
+          <%= f.label :country %>
+           <%= f.select :country_id, options_from_collection_for_select(Country.all, 'id', 'country_code'), :prompt => 'select a country' %>
+         </div>
+       </td>
+
+      
+       <td> 
+        <div class="fieldBlock-set ">
+        <%= f.label :region_id, "Region" %>
+           <%= f.select :region_id, options_from_collection_for_select(Region.all, 'id', 'name'), :prompt => 'select a region' %>
+        </div> 
+       </td>  
+     </tr>
+
+    <tr> 
+        <td>  
+          <div class="fieldBlock-set ">
+          <%= f.label :lpg, "LPG" %> <%= f.text_field :lpg, :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div class="fieldBlock-set ">
+          <%= f.label :cost_per_litre_petrol, "Cost /litre Petrol"  %> <%= f.text_field :cost_per_litre_petrol, :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div class="fieldBlock-set ">
+          <%= f.label :cost_per_litre_diesel, "Cost /litre Diesel"  %> <%= f.text_field :cost_per_litre_diesel, :class => "input"  %></div>
+         </td>  
+    </tr>
+
+
+    <tr>
+       <td> 
+        <div class="fieldBlock-set ">
+        <%= f.label :tyre_life_premium, "Tyre Life: Premium" %> <%= f.text_field :tyre_life_premium, 
+        :value => number_to_percentage(f.object.tyre_life_premium, :precision => 1), :class => "input" %> </div>
+       </td> 
+
+       <td> 
+        <div class="fieldBlock-set ">
+        <%= f.label :tyre_life_mid, "Mid"  %>  <%= f.text_field :tyre_life_mid, :value => number_to_percentage(f.object.tyre_life_mid, 
+        :precision => 1), :class => "input"  %> </div>
+       </td> 
+  
+       <td>       
+        <div class="fieldBlock-set ">
+        <%= f.label :tyre_life_budget, "Budget" %> <%= f.text_field :tyre_life_budget, :value => number_to_percentage(f.object.tyre_life_budget, 
+        :precision => 1), :class => "input"  %> </div>
+       </td> 
+    </tr>
+
+
+    <tr>
+       <td>  
+        <div class="fieldBlock-set ">
+        <%= f.label :tyre_cost_premium, "Tyre Cost: Premium" %> <%= f.text_field :tyre_cost_premium, 
+:value => number_to_percentage(f.object.tyre_cost_premium, :precision => 1), :class => "input"  %> </div>
+       </td> 
+ 
+       <td>  
+        <div class="fieldBlock-set ">
+        <%= f.label :tyre_cost_mid, "Mid" %> <%= f.text_field :tyre_cost_mid, :value => number_to_percentage(f.object.tyre_cost_mid, :precision => 1), :class => "input"   %> </div>
+       </td> 
+
+       <td> 
+        <div class="fieldBlock-set ">
+        <%= f.label :tyre_cost_budget, "Budget"  %> <%= f.text_field :tyre_cost_budget, :value => number_to_percentage(f.object.tyre_cost_budget, 
+        :precision => 1), :class => "input"  %> </div>
+       </td> 
+    </tr>
+
+
+    <tr>
+      <td> 
+        <div class="fieldBlock-set ">
+        <%= f.label :last_service_exclusion_within_miles, "Last service exclusion (if within last)" %> 
+        <%= f.text_field :last_service_exclusion_within_miles, :class => "input"  %> miles,</div> 
+      </td> 
+      
+      <td> 
+      <div class="fieldBlock-set ">
+      <%= f.label :last_service_exclusion_within_percentage, "Exclude" %> <%= f.text_field :last_service_exclusion_within_percentage, 
+      :value => number_to_percentage(f.object.last_service_exclusion_within_percentage, :precision => 1), :class => "input"  %> </div>
+      </td> 
+
+     <td> 
+      <div class="fieldBlock-set ">
+      <%= f.label :last_service_exclusion_within_month, "within" %> <%= f.text_field :last_service_exclusion_within_month, :class => "input" %> month</div>
+     </td> 
+   </tr>
+
+  
+    <tr>
+     <td> 
+       <div class="fieldBlock-set "><%= f.label :Optimize_service_cost_for_fixed_variable, "Optimize service cost (for fixed/variable)" %>
+      <%= f.check_box :optimize_service_cost_for_fixed_variable,  {}, 'true', 'false' %></div>
+     </td> 
+     
+      <td>  
+       <div class="fieldBlock-set "><%= f.label :optimize_service_cost_for_package_price, "Optimize service cost (for package price)" %>
+      <%= f.check_box :optimize_service_cost_for_package_price,  {}, 'true', 'false' %></div>
+      </td> 
+
+      <td> 
+      <div class="fieldBlock-set "><%= f.label :MOT_one_month_early, "MOT one month early" %>
+      <%= f.check_box :MOT_one_month_early,  {}, 'true', 'false' %></div>
+      </td> 
+    </tr>
+
+
+    <tr>  
+      <td> 
+        <div class="fieldBlock-set ">
+        <%= f.label :tyres_cost, "Tyres: Cost"  %> <%= f.text_field :tyres_cost, :class => "input"  %></div>
+      </td> 
+
+      <td> 
+        <div class="fieldBlock-set ">
+        <%= f.label :tyres_ppm, "Tyres: PPM"  %> <%= f.text_field :tyres_ppm, :class => "input", :disabled => true %></div>
+      </td> 
+
+      <td> 
+        <div class="fieldBlock-set ">
+        <%= f.label :valve_replacement %> <%= f.text_field :valve_replacement, :class => "input"  %></div>
+      </td> 
+    </tr>
+
+
+    <tr>
+     <td> 
+      <div class="fieldBlock-set ">
+       <%= f.label :balance %> <%= f.text_field :balance, :class => "input"  %></div>
+     </td>  
+
+     <td> 
+      <div class="actions fieldBlock-set ">
+       <%= f.submit "Session / File Save", :class => "btn-large btn-success" %>
+      </div>
+     </td>  
+    </tr>
+ 
+  </div>
+
+</table> 
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

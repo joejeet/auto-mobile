@@ -1,0 +1,47 @@
+<table>
+	<thead>
+		<th><%=t :part_number %></th>
+		<th><%=t :description %></th>
+		<th><%=t :price %></th>
+		<th><%=t :labour_time %></th>
+		<th><%=t :interval_miles %></th>
+		<th><%=t :interval_months %></th>
+		<th><%=t :ll_interval_miles %></th>
+		<th><%=t :ll_interval_months %></th>
+	</thead>
+	<%if @parts.blank?%>
+	<%= fields_for "service_plan[parts]", @part do |f| %>	
+	<tr>
+		<td><%= f.text_field :part_number %></td>
+		<td><%= f.text_field :description %></td>
+		<td><%= f.fields_for :profile_parts do |builder| %>
+		<%= builder.text_field :price %>
+		<%end%></td>
+		<td><%= f.text_field :labour_time %></td>
+		<td><%= f.text_field :interval_miles %></td>
+		<td><%= f.text_field :interval_months %></td>
+		<td><%= f.text_field :ll_interval_miles %></td>
+		<td><%= f.text_field :ll_interval_months %></td>
+		<td>
+  		<%= f.hidden_field :_destroy %>
+  		<%=link_to image_tag('icons/delete.png', :title => "Delete"), '#', :id => 'delete_item' %>
+  		</td>
+		<%end%>
+	</tr>
+	<%else%>
+	<%@parts.each do |part|%>
+	<tr>
+		<td><%= part.part_number %></td>
+		<td><%= part.description %></td>
+		<td><%= part.labour_time %></td>
+		<td><%= part.interval_miles %></td>
+		<td><%= part.interval_months %></td>
+		<td><%= part.ll_interval_miles %></td>
+		<td><%= part.ll_interval_months %></td>
+		<td><%= part.price %></td>
+		
+	</tr>
+	<%end%>
+	<%end%>
+</table>
+

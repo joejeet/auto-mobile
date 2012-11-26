@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  country_id: 1
+  company_id: 1
+  labour_rate: 9.99
+  cost_per_litre_petrol: 9.99
+  cost_per_litre_diesel: 9.99
+  premium_tyre_applied: 9.99
+  budget_tyre_applied: 9.99
+  usage_light: 9.99
+  usage_medium: 9.99
+  usage_heavy: 9.99
+  last_service_inclusion: 9.99
+  display_option: MyString
+  inflation_model: MyString
+  official_inspection_code: MyString
+  first_inspection: 1
+  inspection_interval: 1
+  inspection_cost: 9.99
+  inspection_month: MyString
+  adhoc_total: 9.99
+  adhoc_monthly: 9.99
+  adhoc_percentage: 9.99
+  admin_brake_fluid_calculation: MyString
+  admin_service_calculation: MyString
+  admin_package_inflation: MyString
+
+two:
+  country_id: 1
+  company_id: 1
+  labour_rate: 9.99
+  cost_per_litre_petrol: 9.99
+  cost_per_litre_diesel: 9.99
+  premium_tyre_applied: 9.99
+  budget_tyre_applied: 9.99
+  usage_light: 9.99
+  usage_medium: 9.99
+  usage_heavy: 9.99
+  last_service_inclusion: 9.99
+  display_option: MyString
+  inflation_model: MyString
+  official_inspection_code: MyString
+  first_inspection: 1
+  inspection_interval: 1
+  inspection_cost: 9.99
+  inspection_month: MyString
+  adhoc_total: 9.99
+  adhoc_monthly: 9.99
+  adhoc_percentage: 9.99
+  admin_brake_fluid_calculation: MyString
+  admin_service_calculation: MyString
+  admin_package_inflation: MyString

@@ -1,0 +1,13 @@
+// Place all the styles related to the smr_drilldowns controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.SmrModal {
+    width: 1200px;
+    height: 575px;
+    margin-left: -600px;
+}
+
+#vertical-2 thead,#vertical-2 tbody{
+                display:inline-block;
+            }

@@ -1,0 +1,147 @@
+$baseFontSize: 16px;
+
+// Links
+	$linkColor:         #E18A07 !default;
+	$linkColorHover:    #003399 !default;
+// Grays
+	$black:             #000 !default;
+	$grayDark:          lighten($black, 25%) !default;
+	$gray:              lighten($black, 50%) !default;
+	$grayLight:         lighten($black, 100%) !default;
+
+// change grid
+$gridColumnWidth: 70px;
+$gridGutterWidth: 10px;
+
+
+// import original bootstrap
+@import "twitter/bootstrap";
+
+
+//To add padding as suggested by twitter-bootstrap
+body { 
+  padding-top: 60px;
+  background-color: rgba(225, 225, 225, 0.55);
+ }
+
+@import "twitter/bootstrap-responsive";
+
+
+//Main content area with grey background
+.main-content {
+
+  margin: auto;
+  vertical-align: middle;
+  width: 1300px;
+  height: 950px;
+  background-color: rgba(130, 130, 130, 0.55);
+  padding: 20px;
+  
+ }
+
+//Main content area label properties
+.main-content label { 
+  font-weight: bold;
+  font-size: 18px;
+  color: #593E1A;
+  font-family:"Times New Roman", Times, serif; 
+ }
+
+//Main content area border
+.content-border {
+	border: 2px outset #593E1A;
+  padding: 100px;
+}
+
+//Header box for tables
+.wellDark {
+    background-color: #C0C0C0;
+    border: 1px solid #D2D2D2;
+    border-radius: 2px 2px 2px 2px;
+    padding: 8px 14px;
+}
+
+//Border - Header box for tables
+.borBox {
+    -moz-box-sizing: border-box;
+}
+
+//Link color - inside button (btn-inverse): twitter-bootstrap overriden
+.btn-inverse a { 
+  text-decoration: none;
+  color: #FFFFFF;
+ }
+
+
+//To place form fields side by side
+.table tbody tr:hover td,
+.table tbody tr:hover th {
+  background-color: transparent;
+ }
+
+.fieldBlock {
+    display: block;
+    width: 450px;
+    float: left;
+    padding: 10px;
+  }
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: #593E1A;
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;   
+}
+h1 {
+    font-size: 26px;
+    line-height: 30px;
+}
+
+h2 {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+h3 {
+    font-size: 14px;
+    line-height: 30px;
+}
+
+h4, h5, h6 {
+    line-height: 20px;
+}
+h4 {
+    font-size: 10px;
+}
+
+h5 {
+    font-size: 8px;
+}
+h6 {
+    color: #593E1A;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.dropdown-menu {
+       
+   background-color: #3F4956;
+   text-align:left;
+   -webkit-border-radius:3px;
+   -moz-border-radius:3px;
+   border-radius:3px; 
+   font-family: "Times New Roman", Times, serif; 
+               
+}
+              
+.left-margin { margin-left: 150px;}
+ 
+
+        
+     
+
+  
+
+
+
+

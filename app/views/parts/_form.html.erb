@@ -1,0 +1,85 @@
+<%= form_for(@part, :remote => @remote) do |f| %>
+<% if @part.errors.any? %>
+<div id="error_explanation">
+	<h2><%= pluralize(@part.errors.count, "error") %> prohibited this part from being saved:</h2>
+
+	<ul>
+		<% @part.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+<h1> New Part </h1>
+<hr>
+<div id="flag1" class="field">	
+	<th>Service/Wear</th>
+	<br />
+	<%= f.select :part_type, options_for_select(Part::PART_TYPES.invert.sort, f.object.part_type), :include_blank => true %>
+</div>
+
+<div class="field">
+	<%= f.label :description %>
+	<br />
+	<% if (f.object.part_description_id.present?)%>
+		<%= f.label f.object.part_description.description %>
+		<%= f.hidden_field :part_description_id %>
+	<% else %>
+		<%= f.select(:part_description_id, PartDescription.all.collect {|p| [ p.description, p.id ] }, {:include_blank => 'None'})%>
+	<% end%>	
+</div>
+<div>
+	<tr><%= f.label :part_number %></tr>
+		<tr>
+			<%= f.fields_for :part_numbers do |builder| %>
+			<%= render "part_number_fields",  :f => builder %>
+			<%end%>
+		</tr>
+		<tr><%= link_to_add_fields image_tag("icons/add.png"), f, :part_numbers %></tr>
+</div>
+<div>
+<%= render '/parts/manufacturer_part', :f => f %>
+</div>
+<div id="labour_time" class="field <%= conditional_class(f.object.part_type == "S", :hidden)%>">
+	<%= f.label :labour_time %>
+	<br />
+	<%= f.text_field :labour_time %>
+</div>
+
+<div id="interval_miles" class="field" >
+	<%= f.label :interval_miles %>
+	<br />
+	<%= f.text_field :interval_miles %>
+</div>
+
+<div id="interval_months" class="field">
+	<%= f.label :interval_months %>
+	<br />
+	<%= f.text_field :interval_months %>
+</div>
+
+<div id="ll_interval_miles" class="field <%=conditional_class(f.object.part_type == "W", :hidden)%>">
+	<%= f.label :ll_interval_miles %>
+	<br />
+	<%= f.text_field :ll_interval_miles %>
+</div>
+
+<div id="ll_interval_months" class="field <%=conditional_class(f.object.part_type == "W", :hidden)%>">
+	<%= f.label :ll_interval_months %>
+	<br />
+	<%= f.text_field :ll_interval_months %>
+</div>
+
+<div class="field">
+	<%= f.label :embargo_datetime %>
+	<br />
+	<%= f.date_select :embargo_datetime %>
+</div>
+
+<div class="actions">
+	<%= f.submit "Create Part", :class => "btn btn-success" %>
+</div>
+<% end %>

@@ -1,0 +1,18 @@
+<div class="vehicle">
+
+		<tr>
+			<td><%= vehicle.fi_code %></td>
+			<td><%= vehicle.make_model.model %></td>
+			<td><%= vehicle.body_style %></td>
+			<td><%= vehicle.fuel_type %></td>
+			<td><%= vehicle.engine_cc %></td>
+			<td><%= vehicle.power_bhp %></td>
+			<td><%= vehicle.transmission %></td>
+			<td><%= vehicle.driven_wheels %></td>
+			<td><%= vehicle.status %></td>
+			<td><%= vehicle.embargo_datetime.strftime("%b %d, %Y") %></td>
+			<td><%= link_to 'Edit', edit_manufacturer_vehicle_path(vehicle.manufacturer, vehicle) %></td>
+			<td><%= link_to 'Delete', manufacturer_vehicle_path(vehicle.manufacturer, vehicle), confirm: 'Are you sure?', method: :delete %></td>
+		</tr>
+	
+	<div>

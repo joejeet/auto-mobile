@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+		<h2>Listing Part</h2>
+	</div>
+<div id="parts">
+		<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+		<tr>
+			<th>Service/Wear</th>
+			<th>part_number</th>
+			<th>description</th>
+			<th>labour_time</th>
+			<th>interval_miles</th>
+			<th>interval_months</th>
+			<th>ll_interval_miles</th>
+			<th>ll_interval_months</th>
+			<th>price</th>
+			<th>embargo_datetime</th>
+			<th></th>
+		</tr>
+		<tr><%= render @part %></tr>
+	</table>
+
+</div><%= link_to 'Back', parts_path %>
+

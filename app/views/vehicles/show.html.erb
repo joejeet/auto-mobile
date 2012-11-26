@@ -1,0 +1,29 @@
+<%= render 'search' %>
+<div id="vehicles">
+		<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+		<tr>
+			<th>fi_code</th>
+			<th>model</th>
+			<th>body_style</th>
+			<th>fuel_type</th>
+			<th>doors</th>
+			<th>engine_cc</th>
+			<th>cylinders</th>
+			<th>power_bhp</th>
+			<th>power_ps</th>
+			<th>transmission</th>
+			<th>gears</th>
+			<th>driven_wheels</th>
+			<th>status </th>
+			<th>embargo_datetime</th>
+			<th></th>
+		</tr>
+		<tr>
+	<%= render @vehicle %></tr>
+	</table>
+</div>
+<div><h2>Create Vehicles</h2></div>
+<div>
+	<%= link_to 'New Vehicle', new_manufacturer_vehicle_path %>
+</div>
+<%= link_to 'Back', manufacturer_vehicles_path %>

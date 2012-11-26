@@ -1,0 +1,36 @@
+<div id="search">
+	<%= form_tag make_models_search_path, :method => 'post' do %>
+	<p>
+		<%= text_field_tag :make_model, params[:make_model] %>
+		<%= submit_tag "Search Make / Model", :class => "btn btn-primary", :name => nil %>
+	</p>
+	<% end %>
+</div>
+
+
+
+<%if @make_model%>
+<div class="wellDark borBox">
+  <h2>Listing Manufacturer/Models</h2>
+</div>
+<p> &nbsp </p>
+<div id="make_models">
+		<table class="table table-bordered">
+		<tr>
+			<th><h2><%= MakeModel.human_attribute_name("manufacturer") %></h2></th>
+			<th><h2><%= MakeModel.human_attribute_name("country_code") %></h2></th>
+			<th><h2><%= MakeModel.human_attribute_name("make_code") %></h2></th>
+			<th><h2><%= MakeModel.human_attribute_name("model") %></h2></th>
+			<th><h2><%= MakeModel.human_attribute_name("model_code") %></h2></th>
+		</tr>
+		<tr><%= render @make_model %></tr>
+	</table>
+
+</div>
+<%end%>
+
+
+<div><h2>Create MakeModel</h2></div>
+<div class="btn btn-inverse">
+	<%= link_to 'New Make / Model', new_make_model_path %>
+</div>

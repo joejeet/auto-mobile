@@ -1,0 +1,19 @@
+<tr>
+  	<td>
+  		<%= f.text_field :menu_pricing%>
+  	</td>  	
+	<% if !is_new %>
+	<td>
+		<%= f.text_field :miles %>
+	</td>
+  	<% end %>
+  	<% if !is_new %>
+	<td>
+		<%= f.text_field :multiply %>
+	</td>
+  	<% end %>
+  	<td>
+  		<%= f.hidden_field :_destroy %>
+  		<%=link_to image_tag('icons/delete.png', :title => "Delete"), '#', :id => 'delete_item', :class => :delete_table_row %>
+  	</td>
+</tr>

@@ -1,0 +1,42 @@
+<table  class="table table-bordered" >
+   <thead>
+    <tr><th><h3>FI Code</h3></th>
+    <th><h3>Manufacturer</h3></th>
+    <th><h3>Model</h3></th>
+    <th><h3>CC</h3></th>
+    <th><h3>BHP</h3></th>
+    <th><h3>Body Style</h3></th>
+    <th><h3>Doors</h3></th>
+    <th><h3>Fuel Type</h3></th>
+    <th><h3>Cylinders</h3></th>
+    <th><h3>Transmission</h3></th>
+    <th><h3>Driven Wheels</h3></th>
+    <th><h3>Repair Cost</h3></th>
+    <th><h3>Service Cost</h3></th>
+    <th><h3>Total Cost</h3></th>
+    </tr>
+  </thead>
+<% if !@vehicles.blank? %>
+  <% @vehicles.each do |vehicle| %>
+    <tbody>
+      <tr class="smrdrilldown">
+      <td><%= vehicle.fi_code %></td>
+      <td><%= vehicle.make_model.make_code %></td>
+      <td><%= vehicle.make_model.model %></td>
+      <td><%= vehicle.engine_cc %></td>
+      <td><%= vehicle.power_bhp %></td>
+      <td><%= vehicle.body_style %></td>
+      <td><%= vehicle.doors %></td>
+      <td><%= vehicle.fuel_type %></td>
+      <td><%= vehicle.cylinders %></td>
+      <td><%= vehicle.transmission %></td>
+      <td><%= vehicle.driven_wheels %></td>
+      <td><%= vehicle.service_plans.fixed.calculate_profile_total_cost(@miles, @months)['wear_cost'] %></td>
+      <td><%= vehicle.service_plans.fixed.calculate_profile_total_cost(@miles, @months)['service_cost'] %></td>
+      <td><%= vehicle.service_plans.fixed.calculate_profile_total_cost(@miles, @months)['total_cost'] %></td>
+      </tr>
+ </tbody>
+    
+  <% end %>
+<% end %>
+</table>

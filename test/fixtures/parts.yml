@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  part_number: MyText
+  description: MyText
+  labour_time: MyText
+  interval_miles: MyText
+  interval_months: MyText
+
+two:
+  part_number: MyText
+  description: MyText
+  labour_time: MyText
+  interval_miles: MyText
+  interval_months: MyText

@@ -1,0 +1,44 @@
+<div>
+	<h2>Search Manufacturer</h2>
+ </div>
+  <%= render 'search'%>
+<div>
+	<h1></h1>
+</div>
+<%if @manufacturer%>
+<div id="manufacturers">
+	<div class="wellDark borBox">
+		<h2>Listing Manufacturers</h2>
+	</div>
+  <p> &nbsp </p>
+	<table class="table table-bordered">
+		<tr>
+			<th><h2><%= Manufacturer.human_attribute_name("name")%></h2></th>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+		<tr>
+			<%= render @manufacturer%>
+		</tr>
+	</table>
+</div>
+<%end%>
+<div align="right">
+	<h1></h1>
+</div>
+<div>
+<hr>
+<p> &nbsp <p>
+	<h2>Create Manufacturer</h2>
+ </div>
+<div>
+	<table>
+    <div class="btn btn-inverse">
+		<%= link_to 'New Manufacturer',  new_manufacturer_path %>
+    </div>
+	</table>
+</div>
+<br />
+
+

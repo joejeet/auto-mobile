@@ -1,0 +1,162 @@
+<div class="modal hide jobModal" id="jobModal">
+  <div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">x</button>
+	<h2>Job Costs</h2>
+  </div>
+  <div class="modal-body">
+  
+<p> &nbsp </p>
+
+<table class="table table-bordered" >
+  <tr>
+    <th><h3>Reg Date</h3></th>
+    <th><h3>Manufacturer</h3></th>
+    <th><h3>Model</h3></th>
+    <th><h3>CC</h3></th>
+    <th><h3>Variant Spec</h3></th>
+    <th><h3>Body Style</h3></th>
+    <th><h3>Doors</h3></th>
+    <th><h3>Cylinders</h3></th>
+    <th><h3>Fuel Type</h3></th>
+    <th><h3>Transmission</h3></th>
+    <th><h3>Gears</h3></th>
+    <th><h3>Driven Wheels</h3></th>
+  </tr>
+<% if !@vehicle.blank? %>
+   <tr>
+      <td>@vehicle.reg_date</td>
+      <td><%= @vehicle.make_model.make_code %></td>
+      <td><%= @vehicle.make_model.model %></td>
+      <td><%= @vehicle.engine_cc %></td>
+      <td><%= @vehicle.power_ps %></td>
+      <td><%= @vehicle.body_style %></td>
+      <td><%= @vehicle.doors %></td>
+      <td><%= @vehicle.cylinders %></td>
+      <td><%= @vehicle.fuel_type %></td>
+      <td><%= @vehicle.transmission %></td>
+      <td><%= @vehicle.number_of_gears%></td>
+      <td><%= @vehicle.driven_wheels %></td>
+    </tr>
+
+<% else !@vehicle_vin.blank?%>
+   <tr>
+      <td><%= check_box_tag :active_status,  {} %></td>
+      <td><%= @vehicle_vin.make_code %></td>
+      <td><%= @vehicle_vin.model %></td>
+      <td><%= @vehicle_vin.engine_cc %></td>
+      <td><%= @vehicle_vin.power_ps %></td>
+      <td><%= @vehicle_vin.body_style %></td>
+      <td><%= @vehicle_vin.doors %></td>
+      <td><%= @vehicle_vin.cylinders %></td>
+      <td><%= @vehicle_vin.fuel_type %></td>
+      <td><%= @vehicle_vin.transmission %></td>
+      <td><%= @vehicle_vin.number_of_gears%></td>
+      <td><%= @vehicle_vin.driven_wheels %></td>
+    </tr>
+
+<% end %>
+
+</table>
+
+<br />
+
+<% if !@vehicle.blank? %>
+<table class="table table-bordered dealer pull-right" id="dealer">
+
+
+ <tr>
+    <th><h3>Dealer </h3></th>  
+    <th><h3>Labour</h3></th>
+    <th><h3>Oil Cost </h3></th>
+    <th><h3>Oil Litres </h3></th>
+    <th><h3>Oil Type</h3></th>
+</tr>
+
+
+<span class="pull-right"> <h2> Invoice Total </h2></span>
+
+</table>
+<% end %>
+
+
+<p> &nbsp </p>
+
+<% if !@vehicle.blank? %>
+<table class="table table-bordered" id="service_cost">
+
+ <tr>
+    <th><h3>Service </h3></th>  
+    <th><h3>Hours</h3></th>
+    <th><h3>Deselect</h3></th>
+    <th><h3>Part</h3></th>
+    <th><h3>Part Ref.</h3></th>
+    <th><h3>Part Price</h3></th>
+    <th><h3>Net Part Price</h3></th>
+    <th><h3>Parts Total</h3></th>
+    <th><h3>Oil Cost</h3></th>
+    <th><h3>Labour Cost</h3></th>
+    <th><h3>Service Cost</h3></th>
+ </tr>
+
+<% if !@service.blank? %>
+  <% @service.each do |service| %>
+  <% service.each do |s| %>
+    <tr class="collapse" id="service">
+     <td> </td> 
+     <td> </td> 
+     <td><%= check_box_tag :active_status,  {}, true %></td>
+     <td><%= PartDescription.find(s[:part_description_id]).description %></td>
+     <td><%= Part.find(s[:id]).part_number %></td> 
+     <td><%= Part.find(s[:id]).price %></td> 
+    </tr>
+  <% end %>
+  <% end %>
+<% end %>
+ 
+ 
+</table>
+<% end %>
+
+<p> &nbsp </p>
+
+<% if !@vehicle.blank? %>
+<table class="table table-bordered" id="additional_cost">
+
+ <tr>
+    <th><h3>Additional Jobs </h3></th>  
+    <th><h3>Hours</h3></th>
+    <th><h3>Deselect</h3></th>
+    <th><h3>Part</h3></th>
+    <th><h3>Part Ref.</h3></th>
+    <th><h3>Part Price</h3></th>
+    <th><h3>Net Part Price</h3></th>
+    <th><h3>Parts Total</h3></th>
+    <th><h3>Oil Cost</h3></th>
+    <th><h3>Labour Cost</h3></th>
+    <th><h3>Service Cost</h3></th>
+ </tr>
+
+<% if !@parts.blank? %>
+  <% @parts.each do |part| %>
+  <% part.each do |p| %>
+    <tr>
+     <td> </td> 
+     <td> </td> 
+     <td><%= check_box_tag :active_status,  {}, true %></td>
+     <td><%= PartDescription.find(p[:part_description_id]).description %></td>
+     <td><%= Part.find(p[:id]).part_number %></td> 
+     <td><%= Part.find(p[:id]).price %></td>  
+
+   </tr>
+  <% end %>
+  <% end %>
+<% end %>
+
+</table>
+<% end %>
+
+  
+</div>
+</div>
+
+

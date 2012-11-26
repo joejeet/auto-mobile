@@ -1,0 +1,11 @@
+<h1>Select Part</h1>
+<%= text_field_tag "part_number_field_#{params[:description]}", params[:num], :class => :part_number_field %>
+<%= hidden_field_tag ":description_id_#{params[:description]}", params[:description], :class => :part_description_id %>
+<%= hidden_field_tag ":part_type_#{params[:description]}", params[:type], :class => :part_type %>
+<%= hidden_field_tag ":part_manufacturer_#{params[:description]}", params[:manufacturer], :class => :manufacturer_id %>
+<%= submit_tag "Search Part", :class => :submit_part %>
+
+<hr/>
+
+<a href="#" class="part_select">Select</a>
+<%=@part.part_numbers.collect(&:part_number).first%>, <%=@part.manufacturers.collect(&:name).first %> - <%=@part.part_description.description %>

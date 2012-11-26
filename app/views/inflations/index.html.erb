@@ -1,0 +1,254 @@
+ 
+ <div class="wellDark borBox">
+   <h2>Inflation Settings</h2>
+  </div>
+ 
+    <p> &nbsp </p>
+
+<table class="table table-bordered"> 
+<%= form_for(@inflation) do |f| %> 
+  <div class="form">
+
+        
+    <div>
+     <%= label_tag :name, "File Name" %> <%= text_field_tag "inflation[name]" %></div>  
+  
+    <tr>
+      <th><h2>Item</h2></th>
+      <th><h2>Year 1</h2></th>
+      <th><h2>Year 2</h2></th>
+      <th><h2>Year 3</h2></th>
+      <th><h2>Year 4</h2></th>
+      <th><h2>Year 5</h2></th>
+      <th><h2>Year 5+</h2></th>
+   </tr>  
+        
+    <tr> 
+        <td><h2>Labour</h2></td>
+        <td>  
+          <div >
+          <%= f.text_field :labour_y1, :value => number_to_percentage(f.object.labour_y1, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :labour_y2, :value => number_to_percentage(f.object.labour_y2, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :labour_y3, :value => number_to_percentage(f.object.labour_y3, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+
+         <td>  
+          <div >
+          <%= f.text_field :labour_y4, :value => number_to_percentage(f.object.labour_y4, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :labour_y5, :value => number_to_percentage(f.object.labour_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :labour_above_y5, :value => number_to_percentage(f.object.labour_above_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+    </tr>
+
+
+    <tr> 
+        <td><h2>Oil</h2></td>
+        <td>  
+          <div >
+          <%= f.text_field :oil_y1, :value => number_to_percentage(f.object.oil_y1, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :oil_y2, :value => number_to_percentage(f.object.oil_y2, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :oil_y3, :value => number_to_percentage(f.object.oil_y3, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+
+         <td>  
+          <div >
+          <%= f.text_field :oil_y4, :value => number_to_percentage(f.object.oil_y4, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :oil_y5, :value => number_to_percentage(f.object.oil_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :oil_above_y5, :value => number_to_percentage(f.object.oil_above_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+    </tr>
+
+
+    <tr> 
+        <td><h2>Parts</h2></td>
+        <td>  
+          <div >
+          <%= f.text_field :parts_y1, :value => number_to_percentage(f.object.parts_y1, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :parts_y2, :value => number_to_percentage(f.object.parts_y2, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :parts_y3, :value => number_to_percentage(f.object.parts_y3, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+
+         <td>  
+          <div >
+          <%= f.text_field :parts_y4, :value => number_to_percentage(f.object.parts_y4, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :parts_y5, :value => number_to_percentage(f.object.parts_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :parts_above_y5, :value => number_to_percentage(f.object.parts_above_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+    </tr>
+
+
+    <tr> 
+        <td><h2>Tyres</h2></td>
+        <td>  
+          <div >
+          <%= f.text_field :tyres_y1, :value => number_to_percentage(f.object.tyres_y1, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :tyres_y2, :value => number_to_percentage(f.object.tyres_y2, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :tyres_y3, :value => number_to_percentage(f.object.tyres_y3, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+
+         <td>  
+          <div >
+          <%= f.text_field :tyres_y4, :value => number_to_percentage(f.object.tyres_y4, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :tyres_y5, :value => number_to_percentage(f.object.tyres_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :tyres_above_y5, :value => number_to_percentage(f.object.tyres_above_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+    </tr>
+    
+
+    <tr> 
+        <td><h2>Fuel</h2></td>
+        <td>  
+          <div >
+          <%= f.text_field :fuel_y1, :value => number_to_percentage(f.object.fuel_y1, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :fuel_y2, :value => number_to_percentage(f.object.fuel_y2, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :fuel_y3, :value => number_to_percentage(f.object.fuel_y3, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+
+         <td>  
+          <div >
+          <%= f.text_field :fuel_y4, :value => number_to_percentage(f.object.fuel_y4, 
+        :precision => 2), :class => "input"  %></div>
+        </td> 
+
+         <td> 
+          <div >
+          <%= f.text_field :fuel_y5, :value => number_to_percentage(f.object.fuel_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td> 
+        
+         <td> 
+          <div >
+          <%= f.text_field :fuel_above_y5, :value => number_to_percentage(f.object.fuel_above_y5, 
+        :precision => 2), :class => "input"  %></div>
+         </td>  
+    </tr>
+
+
+     <tr> 
+      <td> 
+      <div class="actions">
+       <%= f.submit "Override", :class => "btn btn-success" %>
+      </div>
+     </td>  
+    </tr> 
+ 
+  </div>
+
+</table> 
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

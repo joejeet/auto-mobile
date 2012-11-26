@@ -1,0 +1,40 @@
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container ">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Fleet Influence</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Spend By Time", '#' %></li>
+            <li><%= link_to "SMR Drilldown", 'smr_drilldowns'%></li>
+            <li><%= link_to "Contract Extension", '#' %></li>
+            <li><%= link_to "Settings Manager", 'settings_managers' %></li>
+            <li><%= link_to "Imports", '#' %></li>
+            <li><%= link_to "Reports", '#' %></li>
+          </ul>
+          <ul class="nav pull-right">
+           <div class="btn btn-warning">
+           <i class="icon-user icon-black"></i>
+             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <%= current_user.username %>
+              <span class="caret"></span>
+               </a>
+               <ul class="dropdown-menu">
+                 <li> <%= link_to "Sign out", '#', :class => 'exit-click' %> </li>
+                 <li> <%= link_to "Profile", edit_user_registration_path, :method => :get  %> </li>
+               </ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<span class="search-box pull-left"> 
+
+    <%= render 'job_costs/search_box' %>
+
+  </span>

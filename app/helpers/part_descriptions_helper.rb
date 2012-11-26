@@ -1,0 +1,2 @@
+module PartDescriptionsHelper
+end

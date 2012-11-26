@@ -1,0 +1,43 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this company from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+ 
+      <div class="fieldBlock">
+    <%= f.label :Company %><br />
+       <%= f.select :company_id, options_from_collection_for_select(Company.all, 'id', 'Name'), :prompt => 'select a company' %>
+    </div>   
+
+        
+    <div class="fieldBlock"><%= f.label :username %><br />
+    <%= f.text_field :username %></div>
+
+    <div class="fieldBlock"><%= f.label :email %><br />
+    <%= f.email_field :email %></div>
+
+    <div class="fieldBlock"><%= f.label :password %><br />
+    <%= f.password_field :password %></div>
+
+    <div class="fieldBlock"><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation %></div>
+    
+    <div class="fieldBlock-user"><%= f.label :admin %><br />
+    <%= f.check_box :is_admin,  {}, 'true', 'false' %></div>
+
+    <div class="fieldBlock-user"><%= f.label :active %><br />
+    <%= f.check_box :active_status,  {}, 'true', 'false' %></div>
+
+    
+  <div class="actions fieldBlock">
+      <%= f.submit "Create / Update ", :class => "btn btn-success" %>
+  </div>
+ <% end %>
+
+

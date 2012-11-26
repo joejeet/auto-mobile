@@ -1,0 +1,16 @@
+<h2>Import File</h2>
+<hr>
+<p>
+	<%= form_tag "uploads", :multipart => true do%>
+	<%= label_tag :file%>
+	<%= file_field_tag :file%>
+  <%= submit_tag "Save Changes", :class => "btn btn-primary" %>
+  
+ 
+	<%end%>
+</p>
+
+<div class="btn btn-inverse">
+  <%= link_to 'Back', root_url %>
+</div>
+

@@ -1,0 +1,52 @@
+<div class="wellDark borBox">
+  <h2>Saved Files</h2>
+</div>
+
+<p> &nbsp </p>
+
+<table class="table table-bordered">
+  <tr>
+    <th><h2>Saved File</h2></th>
+    <th><h2>Creator</h2></th>
+    <th><h2>Saved Date</h2></th>
+    <th><h2>Load File</h2></th>
+    <th><h2>Compare</h2></th>
+    <th><h2>Locked</h2></th>
+  </tr>
+ 
+<% @files.each do |file| %>
+
+  <tr>
+    <td><%= file.name %></td>
+    <td><%= User.find(file.user_id).username %></td>
+    <td><%= file.updated_at.to_date %></div>
+    <td><%=  %></div>
+    <td><%=  %></div>
+    <td><%=  %></div>
+  </tr>
+<% end %>
+</table>
+
+<p> &nbsp </p>
+
+<table class="table table-bordered">
+<tr>
+    <th><h2>Saved File</h2></th>
+    <th><h2>Creator</h2></th>
+    <th><h2>Saved Date</h2></th>
+    <th><h2>Load File</h2></th>
+    <th><h2>Compare</h2></th>
+   </tr>
+
+<% @session.each do |s| %>  
+  
+  <tr>
+    <td> Session </td>
+    <td><%= User.find(s.user_id).username %></td>
+    <td><%= s.updated_at.to_date %></div>
+    <td><%=  %></div>
+    <td><%=  %></div>
+  </tr>
+
+<% end %>
+</table>

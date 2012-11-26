@@ -1,0 +1,33 @@
+<div class="wellDark borBox">
+  <h2>Listing Companies</h2>
+</div>
+
+<p> &nbsp </p>
+
+<table class="table table-bordered">
+  <tr>
+    <th><h2>Username</h2></th>
+    <th><h2>Email</h2></th>
+    <th><h2>User Type</h2></th>
+    <th><h2>Company</h2></th>
+    <th><h2>Admin</h2></th>
+    <th><h2>Active</h2></th>
+  </tr>
+ 
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.username %></td>
+    <td><%= user.email %></td>
+    <td><%= UserType.find(user.user_type_id).user_type_name %></div>
+    <td><%= Company.find(user.company_id).Name %></div>
+    <td><%= check_box_tag(user, user.is_admin, user.is_admin) %></div>
+    <td><%= check_box_tag(user, user.active_status, user.active_status) %></div>
+    <td><%= link_to 'Edit',  edit_user_path(user) %></td>
+   </tr>
+<% end %>
+</table>
+
+
+
+
+

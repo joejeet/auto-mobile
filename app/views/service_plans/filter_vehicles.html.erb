@@ -1,0 +1,15 @@
+<div id="vehicles">
+<h1>Vehicle selection critirea</h1>
+<hr>
+	<%= form_tag  '/service_plans/selected_profile_vehicles' do %>
+	<%= hidden_field_tag :clone_service_plan, @clone_service_plan.id if @clone_service_plan%>
+	<%= render '/service_plans/variant_selection' %>
+	
+	<div class="actions fieldBlock">
+		<%= submit_tag "Filter Vehicles", :class => "btn btn-success" %>
+	</div>
+	<% end %>
+  <div class="btn btn-inverse">
+    <%= link_to 'Back', service_plans_path %>
+  </div>
+</div>

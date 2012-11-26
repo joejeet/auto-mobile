@@ -1,0 +1,69 @@
+<div class="wellDark borBox">
+
+  <h2>Search Results</h2> 
+</div>
+
+<p> &nbsp </p>
+
+<table class="table table-bordered" id="job_cost">
+  <tr>
+    <th><h3>Select </h3></th>  
+    <th><h3>Reg Date</h3></th>
+    <th><h3>Manufacturer</h3></th>
+    <th><h3>Model</h3></th>
+    <th><h3>CC</h3></th>
+    <th><h3>Variant Spec</h3></th>
+    <th><h3>Body Style</h3></th>
+    <th><h3>Doors</h3></th>
+    <th><h3>Cylinders</h3></th>
+    <th><h3>Fuel Type</h3></th>
+    <th><h3>Transmission</h3></th>
+    <th><h3>Gears</h3></th>
+    <th><h3>Driven Wheels</h3></th>
+   </tr>
+<% if !@vehicle.blank? %>
+   <tr>      
+      <td><%= check_box_tag :active_status,  {} %></td>
+      <td>@vehicle.reg_date</td>
+      <td><%= @vehicle.make_model.make_code %></td>
+      <td><%= @vehicle.make_model.model %></td>
+      <td><%= @vehicle.engine_cc %></td>
+      <td><%= @vehicle.power_ps %></td>
+      <td><%= @vehicle.body_style %></td>
+      <td><%= @vehicle.doors %></td>
+      <td><%= @vehicle.cylinders %></td>
+      <td><%= @vehicle.fuel_type %></td>
+      <td><%= @vehicle.transmission %></td>
+      <td><%= @vehicle.number_of_gears%></td>
+      <td><%= @vehicle.driven_wheels %></td>
+
+   </tr>
+
+<% else !@vehicle_vin.blank?%>
+
+   <tr>
+      <td><%= check_box_tag :active_status,  {} %></td>
+      <td> FI Code </td>
+      <td><%= @vehicle_vin.make_code %></td>
+      <td><%= @vehicle_vin.model %></td>
+      <td><%= @vehicle_vin.engine_cc %></td>
+      <td><%= @vehicle_vin.power_ps %></td>
+      <td><%= @vehicle_vin.body_style %></td>
+      <td><%= @vehicle_vin.doors %></td>
+      <td><%= @vehicle_vin.cylinders %></td>
+      <td><%= @vehicle_vin.fuel_type %></td>
+      <td><%= @vehicle_vin.transmission %></td>
+      <td><%= @vehicle_vin.number_of_gears%></td>
+      <td><%= @vehicle_vin.driven_wheels %></td>
+    </tr>
+ <% else %>
+ <tr>
+      <td colspan="15"> Unable to find the vehicle </td>
+    </tr>
+ <% end %>
+
+
+
+</table>
+<%= render '/job_costs/job_drilldown' %>
+

@@ -1,0 +1,124 @@
+<div id="search">
+	<%= form_tag service_plans_search_path, :method => 'post', :remote =>true do %>
+	<p>
+		<%= text_field_tag :search, params[:search] %>
+		<%= hidden_field_tag :id, params[:id] %>
+		<%= submit_tag "Search", :name => nil %>
+	</p>
+	<% end %>
+</div>
+<div id="service_plan_show">
+	<h3>Service Plan</h3>
+	<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+		<tr>
+			<th><%= ServicePlan.human_attribute_name("smr_code") %></th>
+			<th><%= ServicePlan.human_attribute_name("interval_miles") %></th>
+			<th><%= ServicePlan.human_attribute_name("interval_months") %></th>
+			<th><%= ServicePlan.human_attribute_name("fixed") %></th>
+			<th><%= ServicePlan.human_attribute_name("embargo_datetime") %></th>
+		</tr>
+		<tr>
+			<td><%= @service_plan.smr_code %></td>
+			<td><%= @service_plan.interval_miles %></td>
+			<td><%= @service_plan.interval_months %></td>
+			<td><%= @service_plan.fixed %></td>
+			<td><%= @service_plan.embargo_datetime.strftime("%b %d, %Y") %></td>
+		</tr>
+	</table>
+</div>
+
+<div id="service_plan_services">
+	<h3>Services</h3>
+	<%if @service_plan.services%>		
+		<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+			<tr>
+				<th>Service Name</th>
+				<th>Miles</th>
+				<th>Labour</th>
+				<th>Multiplier</th>
+			</tr>
+			<%@service_plan.services.each do |p| %>
+			<tr>
+				<td><%= p.name %></td>
+				<td><%= p.miles %></td>
+				<td><%= p.labour %></td>
+				<td><%= p.multiply.to_i %></td>			
+			</tr>		
+				<% end %>
+		</table>
+	<% end %>
+</div>
+<div>
+<h3>Parts</h3>
+<%  @service_plan.profile_parts.each do |part| %>
+
+<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+		<tr>
+			<td><%=  part.part.part_type %></td>
+			<td><%= part.part.part_number %></td>
+			<td><%=  part.part.part_description.description %></td>
+			<td><%= part.part.embargo_datetime.strftime("%b %d, %Y") %></td>
+			<td><%= link_to 'Delete', part_path(part), confirm: 'Are you sure?', method: :delete %></td>
+		</tr>
+		</table>
+	<%end%>
+</div>
+<div id="service_plan_fixed_costs">
+	<h3>Fixed Costs</h3>
+	<%if @service_plan.fixed_costs%>		
+		<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+			<tr>
+				<th>Miles</th>
+				<th>Menu Pricing</th>
+				<th>Multiplier</th>
+			</tr>
+			<%@service_plan.fixed_costs.each do |p| %>
+			<tr>
+				<td><%= p.miles %></td>
+				<td><%= p.menu_pricing %></td>
+				<td><%= p.multiply.to_i %></td>			
+			</tr>		
+			<% end %>
+		</table>
+	<% end %>
+</div>
+<div id="vehicles">
+	<h3>Vehicles</h3>
+	<table border="1" style="width: 100%; white-space: nowrap; table-layout: fixed;">
+		<tr>
+			<th><%= Vehicle.human_attribute_name("fi_code") %></th>
+			<th><%= Vehicle.human_attribute_name("model") %></th>
+			<th><%= Vehicle.human_attribute_name("body_style") %></th>
+			<th><%= Vehicle.human_attribute_name("fuel_type") %></th>
+			<th><%= Vehicle.human_attribute_name("engine_cc") %></th>
+			<th><%= Vehicle.human_attribute_name("power_bhp") %></th>
+			<th><%= Vehicle.human_attribute_name("transmission") %></th>
+			<th><%= Vehicle.human_attribute_name("driven_wheels") %></th>
+			<th><%= Vehicle.human_attribute_name("status") %> </th>
+			<th><%= Vehicle.human_attribute_name("embargo_datetime") %></th>
+			<th></th>
+		</tr>
+		<%if @service_plan.vehicles%>
+		<%@service_plan.vehicles.each do |p| %>
+		<tr>
+			<td><%= p.fi_code %></td>
+			<td><%= p.make_model.model %></td>
+			<td><%= p.body_style %></td>
+			<td><%= p.fuel_type %></td>
+			<td><%= p.engine_cc %></td>
+			<td><%= p.power_bhp %></td>
+			<td><%= p.transmission %></td>
+			<td><%= p.driven_wheels %></td>
+			<td><%= p.status %></td>
+			<td><%= p.embargo_datetime.strftime("%b %d, %Y") %></td>
+			<td></td>
+		</tr>
+		<%end%><%end%>
+	</table>
+</div>
+<h3><%= link_to "Clone Service Plan",  service_plans_filter_vehicles_path(:clone_service_plan =>"#{@service_plan.id}") %></h3>
+		<div id='search_result'>
+			<%= render :partial => 'search_part' if params[:search]%>
+		</div>
+
+<%= link_to 'Back', service_plans_path %>
